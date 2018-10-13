@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block registration %}
+{{ message }}
+
+    <div class="main">
+        Registration form
+        <form action="{% url 'registration' %}" method="post">
+            {% csrf_token %}
+            <p><input type="text" placeholder="Login" name="login"/></p>
+            <p><input type="password" placeholder="Password" name="password"/></p>
+            <button type="submit">Register</button>
+
+        </form>
+
+    </div>
+{% endblock %}

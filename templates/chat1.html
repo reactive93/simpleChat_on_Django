@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+{% block chat%}
+
+    <div class="container">
+            <div class="online">
+                    <ul>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+                        <li>1</li>
+
+                    </ul>
+                </div>
+        <div class="chat">
+            <div id="chat_main" class="chat-main">
+                <div class="friend">reactive: <br>
+                    hello
+                </div>
+                    <div class="you">what's up</div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="form">
+        <textarea id="message_text" class="text-message"></textarea>
+        <button class="button-send" type="button" onclick="send()">send message</button>
+    </div>
+
+    <script>
+        var host = 'localhost:8888';
+        websocket = new WebSocket('ws://'+host+'/ws')
+
+        websocket.onopen= function () {
+            console.log('connect');
+        }
+        
+        websocket.onmessage = function (data) {
+            console.log(data.data)
+            var chat = document.getElementById('chat_main')
+            var message = document.createElement("div")
+            message.setAttribute('class','friend')
+            result = JSON.parse(data.data)
+            message.innerHTML = result.name +":" +'<br>' + result.text
+            chat.appendChild(message);
+            console.log(JSON.parse(data.data))
+        }
+
+        websocket.onclose = function () {
+            websocket.close()
+        }
+
+        function send() {
+            user_name = document.getElementById('id_username').innerText
+            text = document.getElementById('message_text').value
+            var chat = document.getElementById('chat_main')
+            var message = document.createElement("div")
+            message.setAttribute('class','you')
+            message.innerHTML = user_name +":" +'<br>' + text
+            chat.appendChild(message);
+
+            json_obj = {'name':user_name,'text':text}
+            websocket.send(JSON.stringify(json_obj))
+
+        }
+
+
+
+    </script>
+
+
+{% endblock %}

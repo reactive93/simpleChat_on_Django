@@ -1,0 +1,67 @@
+.chat{
+
+    background-color: aquamarine;
+    width: 80%;
+    height: 450px;
+    overflow: auto;
+
+}
+
+.chat-main{
+    display: grid;
+    overflow:auto;
+    float: initial;
+    
+}
+
+.online{
+    background-color: brown;
+    width: 20%;
+
+    float: right;
+}
+
+.container{
+
+    
+    width: 100%;
+    height: 100%;
+}
+
+.friend{
+
+    background-color: blanchedalmond;
+    word-break: break-all;
+    width: 30%;
+    
+}
+
+.you{
+    float:right;
+    background-color: cadetblue;
+    word-break: break-all;
+    width: 30%;
+    margin-left: 66%;
+}
+
+
+.text-message{
+    width: 80%;
+    height: 100px;
+    resize: none;
+}
+
+.button-send{
+    display: flex;
+}
+
+.name_you{
+    color: #142cff;
+    display: flex;
+}
+
+#parent > child{
+
+    color:initial;
+    color: #142cff;
+}
